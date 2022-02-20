@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Роман Шашин](https://up.htmlacademy.ru/javascript/25/user/1897333).
-* Наставник: `Неизвестно`.
+- Студент: [Роман Шашин](https://up.htmlacademy.ru/javascript/25/user/1897333).
+- Наставник: [Руслан Бреев](https://htmlacademy.ru/profile/blckwltz).
 
 ---
 

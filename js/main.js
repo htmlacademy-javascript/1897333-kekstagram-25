@@ -1,24 +1,23 @@
-let randomNumber;
-
-function between(min, max) {
+function getNumber(min, max) {
+  if (min > max) {
+    throw new RangeError ('первое значение должно быть минимумом, а второе максимумуом');
+  }
+  if (min === max) {
+    throw new RangeError ('минимум не может быть равен максимуму');
+  }
+  if (min < 0 || max < 0) {
+    throw new RangeError ('min и max должны быть положительными числами');
+  }
   if (min >= 0 && max >= 0) {
-    randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+    const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
     return randomNumber;
-  } else {
-    console.log("min и max должны быть положительными числами");
   }
 }
 
-between(20, 10);
+getNumber(1, 20);
 
-console.log(randomNumber);
-
-function commentCheck(comment, maxLength) {
-  if (comment.length > maxLength) {
-    return false;
-  } else {
-    return true;
-  }
+function checkCommentLength(comment, maxLength) {
+  return (comment.length < maxLength);
 }
 
-console.log(commentCheck("123456789", 5));
+checkCommentLength('123456789', 140);

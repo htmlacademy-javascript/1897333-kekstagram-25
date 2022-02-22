@@ -8,16 +8,13 @@ function getNumber(min, max) {
   if (min < 0 || max < 0) {
     throw new RangeError ('min и max должны быть положительными числами');
   }
-  if (min >= 0 && max >= 0) {
-    const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
-    return randomNumber;
-  }
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 getNumber(1, 20);
 
 function checkCommentLength(comment, maxLength) {
-  return (comment.length < maxLength);
+  return (comment.length <= maxLength);
 }
 
 checkCommentLength('123456789', 140);

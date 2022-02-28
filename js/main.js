@@ -58,13 +58,11 @@ const COMMENT = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-const idUnshuffled = [];
+const unshuffledIds = [];
 
 for (let i=1 ; i <= SIMMILAR_OBJECTS_COUNT ; i++) {
-  idUnshuffled.push(i);
+  unshuffledIds.push(i);
 }
-
-console.log(idUnshuffled);
 
 /* Randomize array in-place using Durstenfeld shuffle algorithm */
 const shuffleArray = function (array) {
@@ -77,21 +75,26 @@ const shuffleArray = function (array) {
   return array;
 };
 
-const b = shuffleArray(idUnshuffled);
-console.log(b);
-console.log(b[0]);
+const shuffledIds = shuffleArray(unshuffledIds);
+
 
 const getRandomArrayElement = (elements) => elements[getNumber(0, elements.length - 1)];
 
-const createPost = () => ({
-  id: getRandomArrayElement(b),
-  url: `img/avatar-${  getNumber(1, 6)  }.svg`,
-  description: '',
-  likes: getNumber(15, 200),
+const createComment = (id) => ({
+  id,
+  avatar: `img/avatar-${  getNumber(1, 6)  }.svg`,
+  message: getRandomArrayElement(COMMENT),
   name: getRandomArrayElement(NAMES),
-  message: getRandomArrayElement(COMMENT)
+})
+
+const createPost = (id) => ({
+  id,
+  url: `photos/${id}.jpg`,
+  description: getRandomArrayElement(COMMENT),
+  likes: getNumber(15, 200),
+  comments: Array.from({length: SIMMILAR_OBJECTS_COUNT}, (element, index) => createComment(shuffledIds[index]))
 });
 
-const similarPosts = Array.from({length: SIMMILAR_OBJECTS_COUNT}, createPost);
+const similarPosts = Array.from({length: SIMMILAR_OBJECTS_COUNT}, (element, index) => createPost(index+1));
 
 console.log(similarPosts);

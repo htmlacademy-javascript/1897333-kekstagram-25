@@ -49,7 +49,7 @@ const NAMES = [
   'Руслан',
 ];
 
-const COMMENT = [
+const COMMENTS = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -77,24 +77,21 @@ const shuffleArray = function (array) {
 
 const shuffledIds = shuffleArray(unshuffledIds);
 
-
 const getRandomArrayElement = (elements) => elements[getNumber(0, elements.length - 1)];
 
 const createComment = (id) => ({
   id,
   avatar: `img/avatar-${  getNumber(1, 6)  }.svg`,
-  message: getRandomArrayElement(COMMENT),
+  message: getRandomArrayElement(COMMENTS),
   name: getRandomArrayElement(NAMES),
-})
+});
 
 const createPost = (id) => ({
   id,
   url: `photos/${id}.jpg`,
-  description: getRandomArrayElement(COMMENT),
+  description: getRandomArrayElement(COMMENTS),
   likes: getNumber(15, 200),
   comments: Array.from({length: SIMMILAR_OBJECTS_COUNT}, (element, index) => createComment(shuffledIds[index]))
 });
 
 const similarPosts = Array.from({length: SIMMILAR_OBJECTS_COUNT}, (element, index) => createPost(index+1));
-
-console.log(similarPosts);

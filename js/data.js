@@ -64,4 +64,4 @@ const createPost = (id) => ({
 
 const similarPosts = Array.from({length: SIMMILAR_OBJECTS_COUNT}, (element, index) => createPost(index+1));
 
-export {SIMMILAR_OBJECTS_COUNT, unshuffledIds, similarPosts};
+export {SIMMILAR_OBJECTS_COUNT, unshuffledIds, createPost};

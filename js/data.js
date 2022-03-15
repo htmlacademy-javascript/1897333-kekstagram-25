@@ -1,3 +1,5 @@
+import { getNumber, getRandomArrayElement, shuffleArray} from './util.js';
+
 const SIMMILAR_OBJECTS_COUNT = 25;
 
 const NAMES = [
@@ -37,4 +39,29 @@ const COMMENT = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-export {SIMMILAR_OBJECTS_COUNT, NAMES, COMMENT};
+const unshuffledIds = [];
+
+const shuffledIds = shuffleArray(unshuffledIds);
+
+for (let i=1 ; i <= SIMMILAR_OBJECTS_COUNT ; i++) {
+  unshuffledIds.push(i);
+}
+
+const createComment = (id) => ({
+  id,
+  avatar: `img/avatar-${  getNumber(1, 6)  }.svg`,
+  message: getRandomArrayElement(COMMENT),
+  name: getRandomArrayElement(NAMES),
+});
+
+const createPost = (id) => ({
+  id,
+  url: `photos/${id}.jpg`,
+  description: getRandomArrayElement(COMMENT),
+  likes: getNumber(15, 200),
+  comments: Array.from({length: SIMMILAR_OBJECTS_COUNT}, (element, index) => createComment(shuffledIds[index]))
+});
+
+const similarPosts = Array.from({length: SIMMILAR_OBJECTS_COUNT}, (element, index) => createPost(index+1));
+
+export {SIMMILAR_OBJECTS_COUNT, unshuffledIds, similarPosts};

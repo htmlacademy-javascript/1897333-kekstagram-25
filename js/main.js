@@ -1,3 +1,2 @@
-import './util.js';
-import './data.js';
-import './generate.js';
+import {similarPosts} from './data.js';
+//console.log(similarPosts);

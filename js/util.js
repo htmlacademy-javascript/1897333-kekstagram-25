@@ -1,4 +1,4 @@
-import { SIMMILAR_OBJECTS_COUNT } from './data.js';
+import { SIMMILAR_OBJECTS_COUNT, unshuffledIds } from './data.js';
 
 function getNumber(min, max) {
   if (min > max) {
@@ -17,12 +17,6 @@ function checkCommentLength(comment, maxLength) {
   return (comment.length <= maxLength);
 }
 
-const unshuffledIds = [];
-
-for (let i=1 ; i <= SIMMILAR_OBJECTS_COUNT ; i++) {
-  unshuffledIds.push(i);
-}
-
 /* Randomize array in-place using Durstenfeld shuffle algorithm */
 const shuffleArray = function (array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -34,8 +28,6 @@ const shuffleArray = function (array) {
   return array;
 };
 
-const shuffledIds = shuffleArray(unshuffledIds);
-
 const getRandomArrayElement = (elements) => elements[getNumber(0, elements.length - 1)];
 
-export {getNumber, getRandomArrayElement, shuffledIds};
+export {getNumber, getRandomArrayElement, shuffleArray};
